@@ -1,0 +1,93 @@
+{
+  "model": {
+    "channels": 12,
+    "div_factor": 1,
+    "prob_output": false,
+    "out_channels": 1
+  },
+  
+  "training": {
+    "epochs": 150,
+    "batch_size": 16,
+    "resume_epoch": 0,
+    "save_every_n_epochs": 10,
+    "cleanup_every_n_batches": 100,
+    "metric": "loss"
+  },
+  
+  "optimizer": {
+    "optimizer": "Adam",
+    "learning_rate": 1e-4,
+    "momentum": 0.5,
+    "weight_decay": 0.0
+  },
+  
+  "loss_function": {
+    "loss_type": "bce",
+    "pos_weight": 1.0,
+    "smooth": 1e-6,
+    "focal_alpha": 0.25,
+    "focal_gamma": 2.0,
+    "combo_alpha": 1.0,
+    "combo_beta": 1.0,
+    "dice_smooth": 1e-6
+  },
+  
+  "scheduler": {
+    "use_scheduler": true,
+    "scheduler_type": "CosineAnnealingLR",
+    "plateau_patience": 10,
+    "plateau_factor": 0.5,
+    "threshold": 1e-4,
+    "min_lr": 1e-7,
+    "t_max": 250,
+    "step_size": 30,
+    "gamma": 0.1
+  },
+
+  "stopping": {
+    "early_stopping": {
+        "enabled": false,
+        "patience": 30,
+        "min_delta": 1e-4,
+        "monitor": "val_loss",
+        "mode": "min",
+        "restore_best_weights": true,
+        "target_loss": null,
+        "max_training_time_hours": null,
+        "divergence_threshold": null,
+        "min_epochs": 30
+    }
+  },
+  
+  "data": {
+    "num_workers": 8,
+    "pin_memory": true,
+    "persistent_workers": true,
+    "prefetch_factor": 4,
+    "neg_ratio": 1,
+    "base_path": "C:/Users/aconte/Desktop/AIRMO/dataset/"
+  },
+  
+  "system": {
+    "device": "auto",
+    "cuda_benchmark": true,
+    "random_seed": 42
+  },
+  
+  "tensorboard": {
+    "log_dir_name": "tensorboard_logs",
+    "max_images_to_log": 8,
+    "normalize_images": true,
+    "nrow_images": 4,
+    "log_images_every_n_epochs": 10,
+    "log_histograms_every_n_epochs": 300,
+    "log_batch_every_n_batches": 10
+  },
+  
+  "paths": {
+    "checkpoint": null,
+    "sweep_override": null
+  }
+  
+}
